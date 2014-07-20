@@ -1,5 +1,7 @@
 rm(list=ls())
 library("classInt")
+library("RCurl")
+
 
 fnCalendarFlow <- function(dfCurrent) {    
     #==============================================
@@ -102,9 +104,12 @@ fnCalendarFlow <- function(dfCurrent) {
 }
 
 
-setwd('/Users/zurich/Google Drive/FactMachine-SITE/FactMachine-Final/CalendarHeatmap')
+x <- getURL("https://raw.githubusercontent.com/thefactmachine/time-series-visualisation/master/Alljob.csv")
+data <- read.csv(text = x)
 
-data <- read.csv('Alljob.csv')
+
+
+
 data$RealDate <- as.character(data$RealDate)
 date <- as.Date(data$RealDate, format = "%d.%m.%y")
 df <-data.frame(date = date, jobs = data$Jobs, holiday = data$Holiday)
@@ -113,7 +118,6 @@ df2013 <- subset(df, as.numeric(format(df$date, "%Y")) == 2013)
 df2014 <- subset(df, as.numeric(format(df$date, "%Y")) == 2014)
 #set up details for plot
 dfCurrent <- df2012
-
 
 dfNoWeekEND <-subset(df, strptime(df$date,  "%Y-%m-%d")$wday %in% c(1,2,3,4,5))
 #get rid of weekends
@@ -126,5 +130,3 @@ par(mfrow = c(3,1), oma=c(0, 0, 0, 0), mar=c(0, 0, 0, 0))
 fnCalendarFlow(dfCurrent12)
 fnCalendarFlow(dfCurrent13)
 fnCalendarFlow(dfCurrent14)
-
-

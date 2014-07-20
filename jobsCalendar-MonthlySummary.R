@@ -1,10 +1,15 @@
 rm(list=ls())
-setwd('/Users/zurich/Google Drive/SITES/FactMachine-Final/CalendarHeatmap')
 library(timeDate)
 library(plyr)
 library(ggplot2)
+library("RCurl")
 
-data <- read.csv('Alljob.csv', stringsAsFactors = FALSE)
+
+x <- getURL("https://raw.githubusercontent.com/thefactmachine/time-series-visualisation/master/Alljob.csv")
+data <- read.csv(text = x)
+
+
+
 date <- as.Date(data$RealDate, format = "%d.%m.%y")
 
 df <-data.frame(date = date, jobs = data$Jobs, holiday = data$Holiday)

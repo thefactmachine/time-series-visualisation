@@ -71,7 +71,7 @@ mm$scaleMean <- (mm$meanJob - min)/ gap
 p <- ggplot(mm, aes(x = factor(weekNum) , y = scaleMean * 4))
 
 # Plot It
-p <- p + geom_bar(stat = "identity", fill="#999999", colour="#999999")
+p <- p + geom_bar(stat = "identity", fill="#FF0000", colour="#FFFFFF")
 
 # Add a LOESS curve
 #p <- p + stat_smooth(se = FALSE, aes(group = 1), n=30, fill="red")

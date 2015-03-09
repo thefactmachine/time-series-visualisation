@@ -168,7 +168,7 @@ df2014 <- subset(df, as.numeric(format(df$date, "%Y")) == 2014)
 dfNoWeekEND <-subset(df, strptime(df$date,  "%Y-%m-%d")$wday %in% c(1,2,3,4,5))
 
 # now just include 3 years 112 = 2012
-dfNoWeekEND <-subset(df, strptime(df$date,  "%Y-%m-%d")$year %in% c(112,113,114))
+dfNoWeekEND <-subset(df, s trptime(df$date,  "%Y-%m-%d")$year %in% c(112,113,114))
 
 #get rid of weekends
 dfCurrent12 <- subset(df2012, strptime(df2012$date,  "%Y-%m-%d")$wday %in% c(1,2,3,4,5))
